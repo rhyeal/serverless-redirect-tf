@@ -32,9 +32,9 @@ Review the [examples](examples/) to see how to use this module.
 |stage|The environment, e.g. development|string|``|no|
 |name|The name of this microservice|string|``|yes|
 |zone_id|The Route53 Zone ID for the creation of DNS records for the SSL certificate|string|``|yes|
-|aliases|An array of aliases for the CloudFront distribution. DNS records will be created or updated for these domain names|list(string)|<list>|no|
-|default_301|The default redirect if no other path matches|URL|<URL>|yes|
-|ordered_301|A map of paths and destinations for routing before the default redirect|map(string)|<map>|yes|
+|aliases|An array of aliases for the CloudFront distribution. DNS records will be created or updated for these domain names|list(string)|`<list>`|no|
+|default_301|The default redirect if no other path matches|URL|`<URL>`|yes|
+|ordered_301|A map of paths and destinations for routing before the default redirect|map(string)|`<map>`|yes|
 
 ## License 
 
