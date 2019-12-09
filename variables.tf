@@ -57,3 +57,33 @@ variable "tags" {
   description = "Additional tags (_e.g._ map(\"BusinessUnit\",\"ABC\")"
   default     = {}
 }
+
+variable "forward_query_string" {
+  type        = "string"
+  description = "Forward the query string to the destination"
+  default     = "false"
+}
+
+variable "forward_all_cookies" {
+  type        = "string"
+  description = "Forward cookies to the destination"
+  default     = "false"
+}
+
+variable "validation_method" {
+    type      = "string"
+    default   = "DNS"
+    description = "How to validate the ACM cert"
+}
+
+variable "email" {
+    type      = "string"
+    default   = ""
+    description = "The email for validation"
+}
+
+variable "acm_arn" {
+    type = "string"
+    default = ""
+    description = "An existing ACM ARN to use for the CloudFront distribution"
+}

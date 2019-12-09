@@ -35,6 +35,8 @@ Review the [examples](examples/) to see how to use this module.
 |aliases|An array of aliases for the CloudFront distribution. DNS records will be created or updated for these domain names|list(string)|`<list>`|no|
 |default_301|The default redirect if no other path matches|URL|`<URL>`|yes|
 |ordered_301|A map of paths and destinations for routing before the default redirect|map(string)|`<map>`|yes|
+|forward_query_string|Forward the query string to the destination|string|`false`|no|
+|forward_all_cookies|Forward cookies to the destination|string|`false`|no|
 
 ## License 
 
