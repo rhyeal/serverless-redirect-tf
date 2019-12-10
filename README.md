@@ -4,7 +4,6 @@ Use this Terraform module for a serverless, CloudFront-based redirect
 ## Usage
 
 ```hcl
-// Generate a random string for auth token, no special chars
 module "example_redirect" {
   source          = "git::https://github.com/rhyeal/terraform-aws-redirect.git?ref=master"
   namespace       = "example"
