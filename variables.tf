@@ -22,6 +22,12 @@ variable "zone_id" {
     description = "The Route53 Zone ID for the creation of DNS records for the SSL certificate"
 }
 
+variable "domain_name" {
+    type        = "string"
+    default     = ""
+    description = "An array of aliases for the CloudFront distribution. DNS records will be created or updated for these domain names"
+}
+
 variable "aliases" {
     type        = "list"
     default     = []
@@ -76,14 +82,20 @@ variable "validation_method" {
     description = "How to validate the ACM cert"
 }
 
-variable "email" {
-    type      = "string"
-    default   = ""
-    description = "The email for validation"
-}
-
 variable "acm_arn" {
     type = "string"
     default = ""
     description = "An existing ACM ARN to use for the CloudFront distribution"
+}
+
+variable "secret_agent" {
+    type = "string"
+    default = ""
+    description = "Pseudo-security for the bucket items"
+}
+
+variable "enabled" {
+  type = "string"
+  default = ""
+  description = "Is this module enabled?"
 }
