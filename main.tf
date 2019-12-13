@@ -59,44 +59,30 @@ resource "aws_s3_bucket_object" "ordered" {
   website_redirect  =   "${element(values(var.ordered_301), count.index)}"
 }
 
-data "aws_iam_policy_document" "s3_policy" {
-  statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.this.arn}/*"]
-
-    principals {
-      type        = "*"
-      identifiers = ["*"]
-    }
-    condition {
-      test     = "StringEquals"
-      variable = "aws:UserAgent"
-
-      values = ["${var.secret_agent}"]
-    }
-  }
-
-  statement {
-    actions   = ["s3:ListBucket"]
-    resources = ["${aws_s3_bucket.this.arn}"]
-
-    principals {
-      type        = "*"
-      identifiers = ["*"]
-    }
-    condition {
-      test     = "StringEquals"
-      variable = "aws:UserAgent"
-
-      values = ["${var.secret_agent}"]
-    }
-  }
-}
-
 resource "aws_s3_bucket_policy" "this" {
   count             = "${var.enabled ? 1 : 0}"
 	bucket = "${aws_s3_bucket.this.id}"
-	policy = "${data.aws_iam_policy_document.s3_policy.json}"
+	#policy = "${data.aws_iam_policy_document.s3_policy.json}"
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "redirectBucketPolicy",
+  "Statement": [
+    {
+      "Sid": "AllowGet",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "${aws_s3_bucket.this.arn}/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:UserAgent": "${var.secret_agent}"
+        }
+      }
+    }
+  ]
+}
+POLICY
 }
 
 locals {
